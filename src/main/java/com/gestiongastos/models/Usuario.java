@@ -13,7 +13,7 @@ public class Usuario {
 	private String email;
 	private String nombre;
 	private String apellido;
-	//private String password;
+	private String clave;
 	private String telefono;
 	@ManyToOne
 	@JoinColumn(name = "codperfil")
@@ -27,12 +27,12 @@ public class Usuario {
 		this.perfil = perfil;
 	}
 
-	public Usuario(String nombre, String apellido, String email, String telefono,
+	public Usuario(String nombre, String apellido, String email, String clave, String telefono,
 			Perfil perfil) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
-		//this.password = password;
+		this.clave = clave;
 		this.telefono = telefono;
 		this.perfil = perfil;
 	}
@@ -65,13 +65,13 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	/*public String getPassword() {
-		return password;
+	public String getClave() {
+		return clave;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}*/
+	public void setClave(String clave) {
+		this.clave = clave;
+	}
 
 	public String getTelefono() {
 		return telefono;

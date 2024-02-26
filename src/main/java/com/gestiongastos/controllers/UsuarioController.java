@@ -43,7 +43,9 @@ public class UsuarioController {
 		usuario.setEmail(usuario.getEmail().toUpperCase().trim());
 		usuario.setNombre(usuario.getNombre());
 		usuario.setApellido(usuario.getApellido());
-		//usuario.setPassword(usuario.getPassword());
+		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2i);
+		String hash = argon2.hash(10, 65536, 1, usuario.getClave());
+		usuario.setClave(hash);
 		usuario.setTelefono(usuario.getTelefono());
 		return usuarioService.save(usuario);
 	}
