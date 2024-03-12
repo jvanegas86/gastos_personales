@@ -1,6 +1,8 @@
  package com.gestiongastos.services;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +16,7 @@ import com.gestiongastos.models.Perfil;
 import com.gestiongastos.repository.UsuarioRepositorio;
 
 @Service
-public class UsuarioServiceImpl {
+public class UsuarioServiceImpl implements UsuarioService{
 
 	@Autowired
 	private UsuarioRepositorio usuarioRepository;
@@ -30,10 +32,9 @@ public class UsuarioServiceImpl {
         return usuarioRepository.save(usuario);
     }
 
-
-	public Usuario obtenerUsuario(Integer id) {
-
-		return usuarioRepository.findById(id).get();
+	@Override
+	public Optional<Usuario> getById(UUID id) {
+		return usuarioRepository.findById(id);
 	}
 
 	/*public void guardarUsuario(Usuario usuario) {

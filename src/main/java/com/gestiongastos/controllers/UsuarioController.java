@@ -27,6 +27,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioServiceImpl usuarioService;
 	
+	
 	/*@PostMapping("/crearUsuario")
 	public void crearUsuario(Map<String, Object> modelo) {
 		Usuario usuario = new Usuario();
@@ -40,11 +41,11 @@ public class UsuarioController {
 
 	@PostMapping("/crearUsuario")
 	public Usuario crearUsuario(@RequestBody Usuario usuario) {
-		usuario.setEmail(usuario.getEmail().toUpperCase().trim());
 		usuario.setNombre(usuario.getNombre());
 		usuario.setApellido(usuario.getApellido());
 		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2i);
 		String hash = argon2.hash(10, 65536, 1, usuario.getClave());
+		usuario.setDocumento(usuario.getDocumento());
 		usuario.setClave(hash);
 		usuario.setTelefono(usuario.getTelefono());
 		return usuarioService.save(usuario);
