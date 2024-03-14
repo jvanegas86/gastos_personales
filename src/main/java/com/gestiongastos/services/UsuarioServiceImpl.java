@@ -1,17 +1,14 @@
  package com.gestiongastos.services;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import com.gestiongastos.models.Usuario;
+import com.gestiongastos.models.UsuarioCategoria;
+import com.gestiongastos.models.UsuarioCategoriaPK;
+import com.gestiongastos.models.Categoria;
 import com.gestiongastos.models.Perfil;
 import com.gestiongastos.repository.UsuarioRepositorio;
 
@@ -24,8 +21,10 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Autowired
 	private PerfilService perfilService;
 
+	@Autowired
+	private CategoriaService categoriaService;
+
 	public Usuario save(Usuario usuario){
-		//Consulta un perfil y lo asigna al usuario
 		Perfil perfil = new Perfil();
 		perfil = perfilService.obtenerPerfil(1).get();
 		usuario.setPerfil(perfil);
@@ -37,40 +36,18 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return usuarioRepository.findById(id);
 	}
 
-	/*public void guardarUsuario(Usuario usuario) {
-		UsuarioAdministrador usuario_especifico;
-		usuario_especifico = new UsuarioAdministrador(usuario);
-		if (usuario_especifico.actualizarUsuario(usuario)) {
-			usuarioRepository.save(usuario);
-		}
+	@Override
+	public void AsociarCategoriaAUsuario(UUID idUsuario, UUID idCategoria) {
+		Usuario 	usuario 	= getById(idUsuario).get();
+		Categoria 	categoria 	= categoriaService.getById(idCategoria).get();
 
+		UsuarioCategoriaPK usuarioCatPK = new UsuarioCategoriaPK();
+		usuarioCatPK.setIdUsuario(idUsuario);
+		usuarioCatPK.setIdCategoria(idCategoria);
+		UsuarioCategoria usuarioCategoria = new UsuarioCategoria(usuario, categoria);
+		usuarioCategoria.setId(usuarioCatPK);
+		usuario.getUsuarioCategoria().add(usuarioCategoria);
+        usuarioRepository.save(usuario);
 	}
-
-	public List<Usuario> listarUsuarios() {
-
-		List<Usuario> usuarios = usuarioRepository.findAll();
-		// UsuarioAdministrador usuario_especifico = new UsuarioAdministrador();
-
-		return usuarios;
-	}
-
-	public Usuario obtenerUsuario(Integer id) {
-
-		return usuarioRepository.findById(id).get();
-	}
-
-	public void eliminarUsuario(Integer id) {
-		usuarioRepository.deleteById(id);
-	}
-
-	public boolean verificarUsuario(String correo, String password) {
-
-		if (UsuarioAbstract.verificarUsuario(listarUsuarios(), correo, password)) {
-			return true;
-		}
-
-		return false;
-
-	}*/
 
 }

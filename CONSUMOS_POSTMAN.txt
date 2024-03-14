@@ -1,0 +1,24 @@
+http://127.0.0.1:8080/usuario/crearUsuario
+
+{
+  "nombre": "JSON",
+  "apellido": "JIMENEZ",
+  "documento": "1022462997",
+  "clave": "123",
+  "telefono": 7571913
+}
+
+http://localhost:8080/ingreso/crearIngreso?valor=20000000
+
+{
+        "idUsuario": "868bf480-38dd-4634-9741-80efc08cef2c",
+        "idTipoIngreso": "ee262563-c101-4b43-a6fe-07df38222339"
+}
+
+
+http://localhost:8080/usuario/asociar-categoria
+
+{
+  "idUsuario": "868bf480-38dd-4634-9741-80efc08cef2c",
+  "idCategoria": "712aa586-3d21-4048-9442-6bfb79628872"
+}

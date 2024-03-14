@@ -1,5 +1,6 @@
 package com.gestiongastos.models;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -10,7 +11,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "municipio")
-public class Municipio {
+public class Municipio implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	@Id
     private Integer codiMunicipio;
 	private String nombMunicipio;

@@ -9,4 +9,6 @@ public interface UsuarioService {
     public Usuario save(Usuario usuario);
     
 	public Optional<Usuario> getById(UUID id);
+
+    public void AsociarCategoriaAUsuario(UUID idUsuario, UUID idCategoria);
 }

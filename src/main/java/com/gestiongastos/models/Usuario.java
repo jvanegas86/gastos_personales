@@ -1,5 +1,6 @@
 package com.gestiongastos.models;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,7 +18,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class Usuario implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
@@ -38,6 +40,9 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
 	private List<Ingreso> ingresos;
+
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<UsuarioCategoria> usuarioCategoria;
 
 	public Perfil getPerfil() {
 		return perfil;
@@ -124,5 +129,14 @@ public class Usuario {
 	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
+
+	public List<UsuarioCategoria> getUsuarioCategoria() {
+		return usuarioCategoria;
+	}
+
+	public void setUsuarioCategoria(List<UsuarioCategoria> usuarioCategoria) {
+		this.usuarioCategoria = usuarioCategoria;
+	}
+	
 
 }

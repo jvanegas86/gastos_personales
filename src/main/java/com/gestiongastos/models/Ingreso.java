@@ -1,5 +1,6 @@
 package com.gestiongastos.models;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
@@ -14,10 +15,11 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "ingreso")
-public class Ingreso {
+public class Ingreso implements Serializable{
+    private static final long serialVersionUID = 1L;
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idGasto;
+    private UUID idIngreso;
     private Date fecha;
     private Double valor;
 
@@ -29,12 +31,12 @@ public class Ingreso {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    public UUID getIdGasto() {
-        return idGasto;
+    public UUID getIdIngreso() {
+        return idIngreso;
     }
 
-    public void setIdGasto(UUID idGasto) {
-        this.idGasto = idGasto;
+    public void setIdIngreso(UUID idGasto) {
+        this.idIngreso = idGasto;
     }
 
     public Date getFecha() {
