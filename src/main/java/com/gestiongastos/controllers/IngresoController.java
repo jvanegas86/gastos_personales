@@ -22,11 +22,11 @@ public class IngresoController {
 	private IngresoService ingresoService;
 
     @PostMapping("/crearIngreso")
-	public ResponseEntity<Ingreso> crearIngreso(@RequestBody Map<String,UUID> requestBody, @RequestParam(name="valor", required=true)Double valor) 
+	public ResponseEntity<Ingreso> crearIngreso(@RequestBody Map<String,UUID> requestBody, @RequestParam(name="identificacion", required=true)Long idUsuario, @RequestParam(name="valor", required=true)Double valor) 
     {
-        UUID idUsuario = requestBody.get("idUsuario");
+        Long id = idUsuario;
         UUID idTipoIngreso = requestBody.get("idTipoIngreso");
-		ingresoService.crearIngreso(idUsuario,idTipoIngreso, valor);
+		ingresoService.crearIngreso(id,idTipoIngreso, valor);
         return ResponseEntity.ok().build();
 	}
 

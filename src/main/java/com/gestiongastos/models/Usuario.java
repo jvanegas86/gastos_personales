@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -21,11 +19,9 @@ import jakarta.persistence.Table;
 public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
+	private Long documento;
 	private String nombre;
 	private String apellido;
-	private String documento;
 	private String clave;
 	private String telefono;
 
@@ -37,11 +33,11 @@ public class Usuario implements Serializable{
 	@JoinColumn(name = "municipio")
 	private Municipio municipio;
 
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Ingreso> ingresos;
 
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<UsuarioCategoria> usuarioCategoria;
 
 	public Perfil getPerfil() {
@@ -52,11 +48,11 @@ public class Usuario implements Serializable{
 		this.perfil = perfil;
 	}
 
-	public Usuario(String nombre, String apellido, UUID id, String clave, String telefono,
+	public Usuario(String nombre, String apellido, Long documento, String clave, String telefono,
 			Perfil perfil) {
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.id = id;
+		this.documento = documento;
 		this.clave = clave;
 		this.telefono = telefono;
 		this.perfil = perfil;
@@ -66,12 +62,12 @@ public class Usuario implements Serializable{
 		super();
 	}
 
-	public UUID getId() {
-		return id;
+	public Long getDocumento() {
+		return documento;
 	}
 
-	public void setId(UUID id) {
-		this.id = id;
+	public void setDocumento(Long documento) {
+		this.documento = documento;
 	}
 
 	public String getNombre() {
@@ -120,14 +116,6 @@ public class Usuario implements Serializable{
 
 	public void setIngresos(List<Ingreso> ingresos) {
 		this.ingresos = ingresos;
-	}
-
-	public String getDocumento() {
-		return documento;
-	}
-
-	public void setDocumento(String documento) {
-		this.documento = documento;
 	}
 
 	public List<UsuarioCategoria> getUsuarioCategoria() {

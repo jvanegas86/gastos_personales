@@ -42,10 +42,10 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/asociar-categoria")
-	public ResponseEntity<Void> AsociarCategoriaAUsuario(@RequestBody Map<String, UUID> requestBody) {
-		UUID idUsuario = requestBody.get("idUsuario");
+	public ResponseEntity<Void> AsociarCategoriaAUsuario(@RequestBody Map<String, UUID> requestBody,@RequestParam(name="identificacion", required=true)Long idUsuario) {
+		Long id = idUsuario;
         UUID idCategoria = requestBody.get("idCategoria");
-		usuarioService.AsociarCategoriaAUsuario(idUsuario, idCategoria);		
+		usuarioService.AsociarCategoriaAUsuario(id, idCategoria);		
 		return ResponseEntity.ok().build();
 	}
 

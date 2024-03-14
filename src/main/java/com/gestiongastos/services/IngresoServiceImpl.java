@@ -23,7 +23,7 @@ public class IngresoServiceImpl implements IngresoService{
 	private TipoIngresoService tipoIngresoService;
 
     @Override
-    public Ingreso crearIngreso(UUID idUsuario, UUID idTipoIngreso, Double valor) {
+    public Ingreso crearIngreso(Long idUsuario, UUID idTipoIngreso, Double valor) {
         Usuario 	usuario 	    = usuarioService.getById(idUsuario).get();
 		TipoIngreso	tipoIngreso 	= tipoIngresoService.getById(idTipoIngreso).get();
 		Ingreso ingreso = new Ingreso();

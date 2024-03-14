@@ -20,7 +20,7 @@ public class CategoriaSubcategoria implements Serializable{
     @JoinColumn(name = "id_subcategoria", insertable = false, updatable = false)
     private Subcategoria subcategoria;
     @ManyToOne
-    @JoinColumn(name = "id_usuario",  referencedColumnName = "id_usuario",insertable = false, updatable = false)
+    @JoinColumn(name = "documento",  referencedColumnName = "documento",insertable = false, updatable = false)
     @JoinColumn(name = "id_categoria",referencedColumnName = "id_categoria", insertable = false, updatable = false)
     private UsuarioCategoria usuarioCategoria;
 

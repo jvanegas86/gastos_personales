@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.gestiongastos.models.Usuario;
 
 @Repository
-public interface UsuarioRepositorio extends JpaRepository<Usuario, UUID> {
+public interface UsuarioRepositorio extends JpaRepository<Usuario, Long> {
 
 }

@@ -32,17 +32,17 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
 	@Override
-	public Optional<Usuario> getById(UUID id) {
+	public Optional<Usuario> getById(Long id) {
 		return usuarioRepository.findById(id);
 	}
 
 	@Override
-	public void AsociarCategoriaAUsuario(UUID idUsuario, UUID idCategoria) {
+	public void AsociarCategoriaAUsuario(Long idUsuario, UUID idCategoria) {
 		Usuario 	usuario 	= getById(idUsuario).get();
 		Categoria 	categoria 	= categoriaService.getById(idCategoria).get();
 
 		UsuarioCategoriaPK usuarioCatPK = new UsuarioCategoriaPK();
-		usuarioCatPK.setIdUsuario(idUsuario);
+		usuarioCatPK.setDocumento(idUsuario);
 		usuarioCatPK.setIdCategoria(idCategoria);
 		UsuarioCategoria usuarioCategoria = new UsuarioCategoria(usuario, categoria);
 		usuarioCategoria.setId(usuarioCatPK);

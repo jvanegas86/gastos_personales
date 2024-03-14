@@ -8,7 +8,7 @@ import com.gestiongastos.models.Usuario;
 public interface UsuarioService {
     public Usuario save(Usuario usuario);
     
-	public Optional<Usuario> getById(UUID id);
+	public Optional<Usuario> getById(Long id);
 
-    public void AsociarCategoriaAUsuario(UUID idUsuario, UUID idCategoria);
+    public void AsociarCategoriaAUsuario(Long idUsuario, UUID idCategoria);
 }

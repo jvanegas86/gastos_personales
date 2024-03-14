@@ -25,7 +25,7 @@ public class UsuarioCategoria implements Serializable{
         this.categoria = categoria;
     }
     @ManyToOne
-    @JoinColumn(name = "id_usuario", insertable = false, updatable = false)
+    @JoinColumn(name = "documento", insertable = false, updatable = false)
     private Usuario usuario;
     @ManyToOne
     @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
