@@ -122,6 +122,8 @@ public class UsuarioServiceImpl implements UsuarioService{
         usuarioRepository.save(usuario);
 	}
 
-	
-
+	@Override
+	public List<Usuario> listarUsuarios() {
+		return usuarioRepository.findAll();
+	}
 }

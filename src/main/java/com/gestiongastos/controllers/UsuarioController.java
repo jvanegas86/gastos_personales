@@ -1,10 +1,14 @@
 package com.gestiongastos.controllers;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gestiongastos.models.RequestBodyCategoria;
 import com.gestiongastos.models.Usuario;
+import com.gestiongastos.services.UsuarioService;
 import com.gestiongastos.services.UsuarioServiceImpl;
 
 import de.mkammerer.argon2.Argon2;
@@ -23,7 +28,7 @@ import de.mkammerer.argon2.Argon2Factory;
 @RequestMapping("/usuario")
 public class UsuarioController {
 	@Autowired
-	private UsuarioServiceImpl usuarioService;
+	private UsuarioService usuarioService;
 	
 	@PostMapping("/crearUsuario")
 	public Usuario crearUsuario(@RequestBody Usuario usuario) {
@@ -50,20 +55,11 @@ public class UsuarioController {
 		usuarioService.AsociarCategoriaAUsuario(id, idCategoria);		
 		return ResponseEntity.ok().build();
 	}
-	/*@PostMapping("/asociar-categoria-subcategoria")
-	public ResponseEntity<Void> AsociarCategoriaSubcatAUsuario(@RequestBody Map<String, UUID> requestBody,@RequestParam(name="identificacion", required=true)Long idUsuario) {
-		Long id = idUsuario;
-        UUID idCategoria = requestBody.get("idCategoria");
-		UUID idSubcategoria = requestBody.get("idSubcategoria");
-		usuarioService.AsociarCategoriaSubcatAUsuario(id, idCategoria, idSubcategoria);		
-		return ResponseEntity.ok().build();
-	}*/
 
-	/*@GetMapping(value = "usuario/{id}")
-	public ResponseEntity<Usuario> getUsuario(@PathVariable int id) {
-
+	@GetMapping(value = "/usuario/{documento}")
+	public ResponseEntity<Usuario> getUsuario(@PathVariable Long documento) {
 		try {
-			Usuario usuario = usuarioService.obtenerUsuario(id);
+			Usuario usuario = usuarioService.getById(documento).get();
 			return new ResponseEntity<>(usuario, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -71,13 +67,13 @@ public class UsuarioController {
 
 	}
 
-	@GetMapping(value = "usuarios")
+	@GetMapping(value = "/listarusuarios")
 	public List<Usuario> getUsuarios() {
 
 		return usuarioService.listarUsuarios();
 	}
 
-	
+	/*
 	@DeleteMapping(value = "usuario/{id}")
 	public void borrarUsuario(@PathVariable int id) {
 		usuarioService.eliminarUsuario(id);

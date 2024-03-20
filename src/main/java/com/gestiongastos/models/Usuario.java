@@ -27,10 +27,12 @@ public class Usuario implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(name = "perfil")
+	@JsonIgnore
 	private Perfil perfil;
 
 	@ManyToOne
 	@JoinColumn(name = "municipio")
+	@JsonIgnore
 	private Municipio municipio;
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
@@ -38,6 +40,7 @@ public class Usuario implements Serializable{
 	private List<Ingreso> ingresos;
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<UsuarioCategoria> usuarioCategoria;
 
 	public Perfil getPerfil() {

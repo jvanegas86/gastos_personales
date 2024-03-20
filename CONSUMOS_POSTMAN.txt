@@ -25,3 +25,5 @@ http://localhost:8080/gasto/creargasto
   "idSubcategoria": "8026678e-71dd-44d4-81e3-9fd2c424e65e",
   "documento": 1019065059
 }
+
+http://localhost:8080/usuario/usuario/1019065059
