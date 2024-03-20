@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,6 +28,8 @@ public class Gasto implements Serializable{
     @ManyToOne
 	@JoinColumn(name = "id_usuario")
     @JoinColumn(name = "id_categoria")
+    @JoinColumn(name = "id_subcategoria")
+    @JsonIgnore
     private CategoriaSubcategoria categoriaSubcategoria;
 
     public UUID getIdGasto() {
@@ -68,7 +71,4 @@ public class Gasto implements Serializable{
     public void setCategoriaSubcategoria(CategoriaSubcategoria categoriaSubcategoria) {
         this.categoriaSubcategoria = categoriaSubcategoria;
     }
-
-    
-
 }

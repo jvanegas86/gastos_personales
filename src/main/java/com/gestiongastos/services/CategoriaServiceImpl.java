@@ -1,5 +1,6 @@
  package com.gestiongastos.services;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gestiongastos.models.Categoria;
+import com.gestiongastos.models.Usuario;
 import com.gestiongastos.repository.CategoriaRepositorio;
 
 @Service
@@ -18,7 +20,7 @@ public class CategoriaServiceImpl implements CategoriaService{
 	@Autowired
 	private CategoriaRepositorio categoriaRepository;
 
-
+	@Override
 	public Categoria save(Categoria categoria){
 		//Perfil perfil = new Perfil();
         return categoriaRepository.save(categoria);
@@ -29,6 +31,10 @@ public class CategoriaServiceImpl implements CategoriaService{
 		return categoriaRepository.findById(id);
 	}
 
+	/*@Override
+	public List<Categoria> getListCategoriaxUsuario(Long identificacion) {
+		return categoriaRepository.findByUserDocument(identificacion);
+	}*/
 	
 
 	/*public void guardarUsuario(Usuario usuario) {

@@ -8,17 +8,20 @@ http://127.0.0.1:8080/usuario/crearUsuario
   "telefono": 7571913
 }
 
-http://localhost:8080/ingreso/crearIngreso?valor=20000000
+http://localhost:8080/ingreso/crearIngreso
 
 {
-        "idUsuario": "868bf480-38dd-4634-9741-80efc08cef2c",
-        "idTipoIngreso": "ee262563-c101-4b43-a6fe-07df38222339"
+        "identificacion": 1019065059,
+        "idTipoIngreso": "4803364a-842f-4e10-84bb-d9cf7e0e485c",
+         "valor": 2563458 
 }
 
-
-http://localhost:8080/usuario/asociar-categoria
+http://localhost:8080/gasto/creargasto
 
 {
-  "idUsuario": "868bf480-38dd-4634-9741-80efc08cef2c",
-  "idCategoria": "712aa586-3d21-4048-9442-6bfb79628872"
+  "monto": 3125000,
+  "descripcion": "Pago de la luz",
+  "idCategoria": "a5ac48fd-7ba0-48eb-9c21-c6869f0ffabc",
+  "idSubcategoria": "8026678e-71dd-44d4-81e3-9fd2c424e65e",
+  "documento": 1019065059
 }

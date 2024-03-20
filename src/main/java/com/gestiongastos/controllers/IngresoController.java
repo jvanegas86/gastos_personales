@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gestiongastos.models.Ingreso;
+import com.gestiongastos.models.IngresoDTO;
 import com.gestiongastos.services.IngresoService;
 
 @RestController
@@ -22,12 +23,12 @@ public class IngresoController {
 	private IngresoService ingresoService;
 
     @PostMapping("/crearIngreso")
-	public ResponseEntity<Ingreso> crearIngreso(@RequestBody Map<String,UUID> requestBody, @RequestParam(name="identificacion", required=true)Long idUsuario, @RequestParam(name="valor", required=true)Double valor) 
+	public ResponseEntity<Ingreso> crearIngreso(@RequestBody IngresoDTO ingresoDTO) 
     {
-        Long id = idUsuario;
-        UUID idTipoIngreso = requestBody.get("idTipoIngreso");
+        Long id = ingresoDTO.getIdentificacion();
+        UUID idTipoIngreso = ingresoDTO.getIdTipoIngreso();
+        Double valor = ingresoDTO.getValor();
 		ingresoService.crearIngreso(id,idTipoIngreso, valor);
         return ResponseEntity.ok().build();
 	}
-
 }

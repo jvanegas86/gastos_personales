@@ -1,9 +1,12 @@
 package com.gestiongastos.models;
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -13,16 +16,29 @@ public class CategoriaSubcategoria implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+    public CategoriaSubcategoria(){
+
+    }
+    
     @EmbeddedId
+    @JsonIgnore
     private CategoriaSubcategoriaPK id;
 
     @ManyToOne
     @JoinColumn(name = "id_subcategoria", insertable = false, updatable = false)
     private Subcategoria subcategoria;
     @ManyToOne
-    @JoinColumn(name = "documento",  referencedColumnName = "documento",insertable = false, updatable = false)
-    @JoinColumn(name = "id_categoria",referencedColumnName = "id_categoria", insertable = false, updatable = false)
+    @JoinColumns({
+        @JoinColumn(name = "documento",  referencedColumnName = "documento",insertable = false, updatable = false),
+        @JoinColumn(name = "id_categoria",referencedColumnName = "id_categoria", insertable = false, updatable = false)
+    })
     private UsuarioCategoria usuarioCategoria;
+
+    
+    public CategoriaSubcategoria(UsuarioCategoria usuario_categoria, Subcategoria subcategoria) {
+        this.usuarioCategoria = usuario_categoria;
+        this.subcategoria = subcategoria;
+    }
 
     @ManyToOne
     @JoinColumn(name = "id_empresa")

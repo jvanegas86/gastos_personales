@@ -1,10 +1,13 @@
 package com.gestiongastos.models;
 import java.io.Serializable;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,6 +33,8 @@ public class UsuarioCategoria implements Serializable{
     @ManyToOne
     @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
     private Categoria categoria;
+    @OneToMany(mappedBy = "usuarioCategoria", cascade = CascadeType.ALL)
+	private List<CategoriaSubcategoria> categoriaSubcategoria;
 
     public UsuarioCategoriaPK getId() {
         return id;
@@ -49,4 +54,14 @@ public class UsuarioCategoria implements Serializable{
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    public List<CategoriaSubcategoria> getCategoriaSubcategoria() {
+        return categoriaSubcategoria;
+    }
+
+    public void setCategoriaSubcategoria(List<CategoriaSubcategoria> categoriaSubcategoria) {
+        this.categoriaSubcategoria = categoriaSubcategoria;
+    }
+
+    
 }

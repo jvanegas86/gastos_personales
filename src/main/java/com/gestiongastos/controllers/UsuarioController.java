@@ -1,21 +1,17 @@
 package com.gestiongastos.controllers;
 
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.stereotype.Controller;
+
+import com.gestiongastos.models.RequestBodyCategoria;
 import com.gestiongastos.models.Usuario;
 import com.gestiongastos.services.UsuarioServiceImpl;
 
@@ -40,7 +36,13 @@ public class UsuarioController {
 		usuario.setTelefono(usuario.getTelefono());
 		return usuarioService.save(usuario);
 	}
-
+	/*@PostMapping("/asociar-categoria")
+	public ResponseEntity<Void> AsociarCategoriaAUsuario(@RequestBody RequestBodyCategoria requestBodyCat) {
+		Long id = requestBodyCat.getDocumento();
+		UUID[] idsCategorias = requestBodyCat.getIdsCAtegorias();
+		usuarioService.AsociarCategoriasAUsuario(requestBodyCat);		
+		return ResponseEntity.ok().build();
+	}*/
 	@PostMapping("/asociar-categoria")
 	public ResponseEntity<Void> AsociarCategoriaAUsuario(@RequestBody Map<String, UUID> requestBody,@RequestParam(name="identificacion", required=true)Long idUsuario) {
 		Long id = idUsuario;
@@ -48,6 +50,14 @@ public class UsuarioController {
 		usuarioService.AsociarCategoriaAUsuario(id, idCategoria);		
 		return ResponseEntity.ok().build();
 	}
+	/*@PostMapping("/asociar-categoria-subcategoria")
+	public ResponseEntity<Void> AsociarCategoriaSubcatAUsuario(@RequestBody Map<String, UUID> requestBody,@RequestParam(name="identificacion", required=true)Long idUsuario) {
+		Long id = idUsuario;
+        UUID idCategoria = requestBody.get("idCategoria");
+		UUID idSubcategoria = requestBody.get("idSubcategoria");
+		usuarioService.AsociarCategoriaSubcatAUsuario(id, idCategoria, idSubcategoria);		
+		return ResponseEntity.ok().build();
+	}*/
 
 	/*@GetMapping(value = "usuario/{id}")
 	public ResponseEntity<Usuario> getUsuario(@PathVariable int id) {
