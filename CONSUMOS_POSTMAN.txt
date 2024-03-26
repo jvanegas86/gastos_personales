@@ -27,3 +27,5 @@ http://localhost:8080/gasto/creargasto
 }
 
 http://localhost:8080/usuario/usuario/1019065059
+
+http://localhost:8080/usuario/listarusuarios

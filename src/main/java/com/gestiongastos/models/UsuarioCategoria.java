@@ -61,7 +61,5 @@ public class UsuarioCategoria implements Serializable{
 
     public void setCategoriaSubcategoria(List<CategoriaSubcategoria> categoriaSubcategoria) {
         this.categoriaSubcategoria = categoriaSubcategoria;
-    }
-
-    
+    }    
 }
