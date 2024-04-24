@@ -35,6 +35,7 @@ public class UsuarioCategoria implements Serializable{
     private Usuario usuario;
     @ManyToOne
     @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
+    @JsonIgnore
     private Categoria categoria;
     @OneToMany(mappedBy = "usuarioCategoria", cascade = CascadeType.ALL)
 	private List<CategoriaSubcategoria> categoriaSubcategoria;

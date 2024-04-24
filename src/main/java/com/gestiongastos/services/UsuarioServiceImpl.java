@@ -133,7 +133,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return usuarioRepository.listarIngresosXUsuario(usuario);
 	}
 	@Override
-	public List<Gasto> listarGastosXUsuario(Long usuario){
+	public List<Object[]> listarGastosXUsuario(Long usuario){
 		return usuarioRepository.listarGastosXUsuario(usuario);
 	}
 }

@@ -32,6 +32,7 @@ public class CategoriaSubcategoria implements Serializable{
         @JoinColumn(name = "documento",  referencedColumnName = "documento",insertable = false, updatable = false),
         @JoinColumn(name = "id_categoria",referencedColumnName = "id_categoria", insertable = false, updatable = false)
     })
+    @JsonIgnore
     private UsuarioCategoria usuarioCategoria;
 
     

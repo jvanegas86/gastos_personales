@@ -17,6 +17,9 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long> {
     @Query(value = "SELECT i FROM Ingreso i WHERE i.usuario.documento = :documento")
     List<Ingreso> listarIngresosXUsuario(@Param("documento") Long documento);
 
-    @Query(value = "SELECT g FROM Gasto g WHERE g.categoriaSubcategoria.usuarioCategoria.usuario.documento = :documento")
-    List<Gasto> listarGastosXUsuario(@Param("documento") Long documento);
+    //@Query(value = "SELECT g FROM Gasto g WHERE g.categoriaSubcategoria.usuarioCategoria.usuario.documento = :documento")
+    //List<Gasto> listarGastosXUsuario(@Param("documento") Long documento);
+    @Query("SELECT g, cs.usuarioCategoria.categoria, cs.subcategoria FROM Gasto g JOIN g.categoriaSubcategoria cs WHERE cs.usuarioCategoria.usuario.documento = :documento")
+    List<Object[]> listarGastosXUsuario(@Param("documento") Long documento);
+
 }

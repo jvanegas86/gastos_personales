@@ -27,5 +27,5 @@ public interface UsuarioService {
 
     public List<Ingreso> listarIngresosXUsuario(Long usuario);
 
-    public List<Gasto> listarGastosXUsuario(Long usuario);
+    public List<Object[]> listarGastosXUsuario(Long usuario);
 }

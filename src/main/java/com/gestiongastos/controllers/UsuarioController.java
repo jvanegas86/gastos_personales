@@ -74,7 +74,7 @@ public class UsuarioController {
 		return usuarioService.listarIngresosXUsuario(documento);
 	}
 	@GetMapping(value = "/listargasatos/{documento}")
-	public List<Gasto> getGastosXUsuario(@PathVariable Long documento) {
+	public List<Object[]> getGastosXUsuario(@PathVariable Long documento) {
 		return usuarioService.listarGastosXUsuario(documento);
 	}
 	/*
