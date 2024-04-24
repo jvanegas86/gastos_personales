@@ -2,6 +2,8 @@ package com.gestiongastos.models;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -29,6 +31,7 @@ public class UsuarioCategoria implements Serializable{
     }
     @ManyToOne
     @JoinColumn(name = "documento", insertable = false, updatable = false)
+    @JsonIgnore
     private Usuario usuario;
     @ManyToOne
     @JoinColumn(name = "id_categoria", insertable = false, updatable = false)

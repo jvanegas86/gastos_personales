@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gestiongastos.models.Gasto;
+import com.gestiongastos.models.Ingreso;
 import com.gestiongastos.models.RequestBodyCategoria;
 import com.gestiongastos.models.Usuario;
 import com.gestiongastos.services.UsuarioService;
@@ -41,13 +43,7 @@ public class UsuarioController {
 		usuario.setTelefono(usuario.getTelefono());
 		return usuarioService.save(usuario);
 	}
-	/*@PostMapping("/asociar-categoria")
-	public ResponseEntity<Void> AsociarCategoriaAUsuario(@RequestBody RequestBodyCategoria requestBodyCat) {
-		Long id = requestBodyCat.getDocumento();
-		UUID[] idsCategorias = requestBodyCat.getIdsCAtegorias();
-		usuarioService.AsociarCategoriasAUsuario(requestBodyCat);		
-		return ResponseEntity.ok().build();
-	}*/
+
 	@PostMapping("/asociar-categoria")
 	public ResponseEntity<Void> AsociarCategoriaAUsuario(@RequestBody Map<String, UUID> requestBody,@RequestParam(name="identificacion", required=true)Long idUsuario) {
 		Long id = idUsuario;
@@ -73,6 +69,14 @@ public class UsuarioController {
 		return usuarioService.listarUsuarios();
 	}
 
+    @GetMapping(value = "/listaringresos/{documento}")
+	public List<Ingreso> getIngresosXUsuario(@PathVariable Long documento) {
+		return usuarioService.listarIngresosXUsuario(documento);
+	}
+	@GetMapping(value = "/listargasatos/{documento}")
+	public List<Gasto> getGastosXUsuario(@PathVariable Long documento) {
+		return usuarioService.listarGastosXUsuario(documento);
+	}
 	/*
 	@DeleteMapping(value = "usuario/{id}")
 	public void borrarUsuario(@PathVariable int id) {

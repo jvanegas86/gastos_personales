@@ -15,6 +15,8 @@ import com.gestiongastos.models.UsuarioCategoriaPK;
 import com.gestiongastos.models.Categoria;
 import com.gestiongastos.models.CategoriaSubcategoria;
 import com.gestiongastos.models.CategoriaSubcategoriaPK;
+import com.gestiongastos.models.Gasto;
+import com.gestiongastos.models.Ingreso;
 import com.gestiongastos.models.Perfil;
 import com.gestiongastos.models.RequestBodyCategoria;
 import com.gestiongastos.models.RequestBodyModel;
@@ -125,5 +127,13 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Override
 	public List<Usuario> listarUsuarios() {
 		return usuarioRepository.findAll();
+	}
+	@Override
+	public List<Ingreso> listarIngresosXUsuario(Long usuario) {
+		return usuarioRepository.listarIngresosXUsuario(usuario);
+	}
+	@Override
+	public List<Gasto> listarGastosXUsuario(Long usuario){
+		return usuarioRepository.listarGastosXUsuario(usuario);
 	}
 }

@@ -1,6 +1,8 @@
 package com.gestiongastos.services;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +11,16 @@ import com.gestiongastos.models.Ingreso;
 import com.gestiongastos.models.TipoIngreso;
 import com.gestiongastos.models.Usuario;
 import com.gestiongastos.repository.IngresoRepositorio;
+import com.gestiongastos.repository.UsuarioRepositorio;
 
 @Service
 public class IngresoServiceImpl implements IngresoService{
 	
     @Autowired
 	private IngresoRepositorio ingresoRepository;
+
+    @Autowired
+	private UsuarioRepositorio usuarioRepository;
 
     @Autowired
 	private UsuarioService usuarioService;
@@ -34,5 +40,8 @@ public class IngresoServiceImpl implements IngresoService{
         return ingresoRepository.save(ingreso);
     }
 
-    
+    @Override
+    public Optional<Ingreso> getById(UUID idIngreso) {
+        return ingresoRepository.findById(idIngreso);
+    }
 }
