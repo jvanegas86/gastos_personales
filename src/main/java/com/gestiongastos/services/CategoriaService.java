@@ -10,6 +10,7 @@ import com.gestiongastos.models.Categoria;
 public interface CategoriaService {
     public Categoria save(Categoria categoria);
 	public Optional<Categoria> getById(UUID id);
+	public List<Categoria> listarCategorias();
 	//public List<Categoria> getListCategoriaxUsuario(Long identificacion);
 
 }

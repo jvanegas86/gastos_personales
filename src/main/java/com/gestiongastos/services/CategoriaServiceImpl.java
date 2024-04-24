@@ -31,6 +31,11 @@ public class CategoriaServiceImpl implements CategoriaService{
 		return categoriaRepository.findById(id);
 	}
 
+	@Override
+	public List<Categoria> listarCategorias() {
+		return categoriaRepository.findAll();
+	}
+
 	/*@Override
 	public List<Categoria> getListCategoriaxUsuario(Long identificacion) {
 		return categoriaRepository.findByUserDocument(identificacion);
